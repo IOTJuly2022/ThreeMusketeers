@@ -6,7 +6,7 @@ import lombok.*;
 public class Memory{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long id;
+	private long id;
 	
 	@Getter
 	@Setter
