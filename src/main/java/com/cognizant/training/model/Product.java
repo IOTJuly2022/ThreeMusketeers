@@ -12,7 +12,7 @@ import lombok.Setter;
 public class Product {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long id;
+	private long id;
 	
 	@Getter
 	@Setter
@@ -22,15 +22,15 @@ public class Product {
 	@Getter
 	@Setter
 	@Min(0)
-	private Double price;
+	private float price;
 	
 	@Getter
 	@Setter
 	@Min(0)
 	@Max(5)
-	private Double rating;
+	private float rating;
 	
-	public Product(String name, Double price, Double rating) {
+	public Product(String name, float price, float rating) {
 		this.name = name;
 		this.price = price;
 		this.rating = rating;
