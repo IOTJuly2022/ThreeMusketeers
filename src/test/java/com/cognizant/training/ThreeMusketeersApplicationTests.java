@@ -1,0 +1,13 @@
+package com.cognizant.training;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class ThreeMusketeersApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+
+}
