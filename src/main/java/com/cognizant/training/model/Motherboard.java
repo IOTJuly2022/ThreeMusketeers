@@ -21,7 +21,7 @@ public class Motherboard {
 	@Setter
 	@Min(1)
 	@JoinColumn(name="Socket")
-	private int socket;
+	private String socket;
 	
 	@Getter
 	@Setter
@@ -43,7 +43,7 @@ public class Motherboard {
 	@NotNull
 	private String color;
 	
-	public Motherboard(Product product, int socket, String formFactor, int maxMem, int memSlots, String color) {
+	public Motherboard(Product product, String socket, String formFactor, int maxMem, int memSlots, String color) {
 		this.product = product;
 		this.socket = socket;
 		this.formFactor = formFactor;
