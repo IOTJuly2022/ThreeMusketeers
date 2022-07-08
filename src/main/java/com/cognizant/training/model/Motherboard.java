@@ -19,7 +19,8 @@ public class Motherboard {
 	//Does this need a @JoinColumn
 	@Getter
 	@Setter
-	@Min(1)
+	@NotNull
+	@ManyToOne
 	@JoinColumn(name="Socket")
 	private String socket;
 	

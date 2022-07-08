@@ -2,6 +2,7 @@ package com.cognizant.training.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 import lombok.*;
 @Entity
@@ -12,13 +13,16 @@ public class Processor {
 	
 	@Getter
 	@Setter
+	@ManyToOne
 	@JoinColumn(name="ProductID")
 	private Product product;
 	
 	@Getter
 	@Setter
+	@NotNull
+	@ManyToOne
 	@JoinColumn(name="Socket")
-	private int socket;
+	private String socket;
 	
 	@Getter
 	@Setter
@@ -39,7 +43,7 @@ public class Processor {
 	@Setter
 	private boolean integratedGPU;
 	
-	public Processor(Product product, int socket, float coreCount, float coreClock, float tdp, boolean integratedGPU) {
+	public Processor(Product product, String socket, float coreCount, float coreClock, float tdp, boolean integratedGPU) {
 		this.product = product;
 		this.socket = socket;
 		this.coreCount = coreCount;
