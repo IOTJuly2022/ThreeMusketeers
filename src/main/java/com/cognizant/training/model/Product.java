@@ -14,6 +14,7 @@ import lombok.Setter;
  * @author William Simpson
  */
 @Entity
+@Table(name = "products")
 public class Product {
 	
 	/**

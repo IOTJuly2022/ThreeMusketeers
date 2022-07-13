@@ -12,6 +12,7 @@ import lombok.Setter;
  * @author William Simpson
  */
 @Entity
+@Table(name = "order_statuses")
 public class OrderStatus {
 	
 	/**

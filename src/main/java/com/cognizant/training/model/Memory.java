@@ -3,6 +3,7 @@ package com.cognizant.training.model;
 import javax.persistence.*;
 import lombok.*;
 @Entity
+@Table(name = "memory")
 public class Memory{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)

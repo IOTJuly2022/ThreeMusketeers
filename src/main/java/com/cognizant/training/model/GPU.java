@@ -5,6 +5,7 @@ import javax.validation.constraints.NotNull;
 
 import lombok.*;
 @Entity
+@Table(name = "gpus")
 public class GPU
 {
 	@Id
@@ -13,6 +14,7 @@ public class GPU
 	
 	@Getter
 	@Setter
+	@ManyToOne
 	@JoinColumn(name="ProductID")
 	private Product product;
 	

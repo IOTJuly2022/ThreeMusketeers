@@ -12,6 +12,7 @@ import lombok.*;
  * @author William Simpson
  */
 @Entity
+@Table(name = "order_details")
 public class OrderDetail {
 	/**
 	 * The unique ID for the order detail

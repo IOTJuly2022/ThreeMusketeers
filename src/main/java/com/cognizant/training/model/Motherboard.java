@@ -5,6 +5,7 @@ import javax.validation.constraints.NotNull;
 
 import lombok.*;
 @Entity
+@Table(name = "motherboards")
 public class Motherboard {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -22,7 +23,7 @@ public class Motherboard {
 	@NotNull
 	@ManyToOne
 	@JoinColumn(name="Socket")
-	private String socket;
+	private Socket socket;
 	
 	@Getter
 	@Setter
@@ -44,7 +45,7 @@ public class Motherboard {
 	@NotNull
 	private String color;
 	
-	public Motherboard(Product product, String socket, String formFactor, int maxMem, int memSlots, String color) {
+	public Motherboard(Product product, Socket socket, String formFactor, int maxMem, int memSlots, String color) {
 		this.product = product;
 		this.socket = socket;
 		this.formFactor = formFactor;

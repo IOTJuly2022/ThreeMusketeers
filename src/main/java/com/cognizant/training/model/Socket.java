@@ -4,6 +4,7 @@ import javax.validation.constraints.NotNull;
 import lombok.*;
 
 @Entity
+@Table(name = "sockets")
 public class Socket {
 	//Data type might need to by string: ex. LGA1151, AMD4
 	@Id

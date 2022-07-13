@@ -5,7 +5,9 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import lombok.*;
+
 @Entity
+@Table(name = "processors")
 public class Processor {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -22,7 +24,7 @@ public class Processor {
 	@NotNull
 	@ManyToOne
 	@JoinColumn(name="Socket")
-	private String socket;
+	private Socket socket;
 	
 	@Getter
 	@Setter
@@ -43,7 +45,7 @@ public class Processor {
 	@Setter
 	private boolean integratedGPU;
 	
-	public Processor(Product product, String socket, float coreCount, float coreClock, float tdp, boolean integratedGPU) {
+	public Processor(Product product, Socket socket, float coreCount, float coreClock, float tdp, boolean integratedGPU) {
 		this.product = product;
 		this.socket = socket;
 		this.coreCount = coreCount;
