@@ -19,4 +19,6 @@ public class Socket {
 	public Socket(String name) {
 		this.name = name;
 	}
+
+	public Socket() { }
 }

@@ -14,8 +14,9 @@ import lombok.Setter;
  * @author William Simpson
  */
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Table(name = "products")
-public class Product {
+public abstract class Product {
 	
 	/**
 	 * The unique ID for the product
@@ -63,4 +64,6 @@ public class Product {
 		this.price = price;
 		this.rating = rating;
 	}
+
+	public Product() { }
 }

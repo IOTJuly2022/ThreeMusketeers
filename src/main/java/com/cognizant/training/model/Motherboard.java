@@ -5,19 +5,8 @@ import javax.validation.constraints.NotNull;
 
 import lombok.*;
 @Entity
-@Table(name = "motherboards")
-public class Motherboard {
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long id;
-	
-	@Getter
-	@Setter
-	@ManyToOne
-	@JoinColumn(name="ProductID")
-	private Product product;
-	
-	//Does this need a @JoinColumn
+public class Motherboard extends Product{
+
 	@Getter
 	@Setter
 	@NotNull
@@ -45,12 +34,23 @@ public class Motherboard {
 	@NotNull
 	private String color;
 	
-	public Motherboard(Product product, Socket socket, String formFactor, int maxMem, int memSlots, String color) {
-		this.product = product;
+	public Motherboard(
+			String name,
+			float price,
+			float rating,
+ 			Socket socket,
+			String formFactor,
+			int maxMem,
+			int memSlots,
+			String color
+	) {
+		super(name, price, rating);
 		this.socket = socket;
 		this.formFactor = formFactor;
 		this.maxMem = maxMem;
 		this.memSlots = memSlots;
 		this.color = color;
 	}
+
+	public Motherboard() { }
 }

@@ -3,18 +3,7 @@ package com.cognizant.training.model;
 import javax.persistence.*;
 import lombok.*;
 @Entity
-@Table(name = "memory")
-public class Memory{
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long id;
-	
-	@Getter
-	@Setter
-	@ManyToOne
-	@JoinColumn(name = "ProductID")
-	private Product product;
-	
+public class Memory extends Product{
 	@Getter
 	@Setter
 	private float speed;
@@ -31,13 +20,22 @@ public class Memory{
 	@Setter
 	private String color;
 	
-	public Memory(Product product,float speed, int packageSize, int size, String color) {
-		this.product = product;
+	public Memory(
+			String name,
+			float price,
+			float rating,
+			float speed,
+			int packageSize,
+			int size,
+			String color
+	) {
+		super(name, price, rating);
 		this.speed = speed;
 		this.packageSize = packageSize;
 		this.size = size;
 		this.color = color;
 	}
-	
-	
+
+
+	public Memory() { }
 }

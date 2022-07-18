@@ -5,19 +5,8 @@ import javax.validation.constraints.NotNull;
 
 import lombok.*;
 @Entity
-@Table(name = "gpus")
-public class GPU
+public class GPU extends Product
 {
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long id;
-	
-	@Getter
-	@Setter
-	@ManyToOne
-	@JoinColumn(name="ProductID")
-	private Product product;
-	
 	@Getter
 	@Setter
 	private String chipset;
@@ -41,12 +30,23 @@ public class GPU
 	// ID - int, productid - int, chipset - varchar(255), 
 	//memory - int, clockspeed - int, color - varchar(255), length - float
 	
-	public GPU(Product product, String chipset, float memory, float clockspeed, String color, float length) {
-		this.product = product;
+	public GPU(
+			String name,
+			float price,
+			float rating,
+			String chipset,
+			float memory,
+			float clockspeed,
+			String color,
+			float length
+	) {
+		super(name, price, rating);
 		this.chipset = chipset;
 		this.memory = memory;
 		this.clockspeed = clockspeed;
 		this.color = color;
 		this.length = length;
 	}
+
+	public GPU() { }
 }

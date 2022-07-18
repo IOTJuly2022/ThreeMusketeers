@@ -7,18 +7,7 @@ import javax.validation.constraints.NotNull;
 import lombok.*;
 
 @Entity
-@Table(name = "processors")
-public class Processor {
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long id;
-	
-	@Getter
-	@Setter
-	@ManyToOne
-	@JoinColumn(name="ProductID")
-	private Product product;
-	
+public class Processor extends Product {
 	@Getter
 	@Setter
 	@NotNull
@@ -45,12 +34,23 @@ public class Processor {
 	@Setter
 	private boolean integratedGPU;
 	
-	public Processor(Product product, Socket socket, float coreCount, float coreClock, float tdp, boolean integratedGPU) {
-		this.product = product;
+	public Processor(
+			String name,
+			float price,
+			float rating,
+			Socket socket,
+			float coreCount,
+			float coreClock,
+			float tdp,
+			boolean integratedGPU
+	) {
+		super(name, price, rating);
 		this.socket = socket;
 		this.coreCount = coreCount;
 		this.coreClock = coreClock;
 		this.tdp = tdp;
 		this.integratedGPU = integratedGPU;
 	}
+
+	public Processor() { }
 }
