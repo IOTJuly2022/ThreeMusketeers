@@ -1,4 +1,4 @@
-package com.congizant.training.controller;
+package com.cognizant.training.controller;
 
 import java.util.List;
 import java.util.function.Function;
