@@ -16,7 +16,7 @@ public class ThreeMusketeersApplication {
 	}
 
 	// Method below will check beans Spring Boot synthesizes on startup, helps with debugging
-	@Bean
+	/*@Bean
 	CommandLineRunner beanCheck(ApplicationContext ctx)
 	{
 		return args ->
@@ -29,5 +29,5 @@ public class ThreeMusketeersApplication {
 				System.out.println(b);
 			}
 		};
-	}
+	}*/
 }

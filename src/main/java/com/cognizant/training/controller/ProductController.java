@@ -25,7 +25,7 @@ public class ProductController {
 
 	@GetMapping("/v1/products/index")
 	public String index() {
-		return "Successfully indexed Products table";
+		return "Successfully indexed Products table, Controller is running.";
 	}
 
 	// GET:: Fetch all Product entities in List form

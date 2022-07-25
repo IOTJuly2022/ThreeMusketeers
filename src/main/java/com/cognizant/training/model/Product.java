@@ -1,11 +1,14 @@
 package com.cognizant.training.model;
 
+import java.io.Serializable;
+
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
@@ -16,14 +19,20 @@ import lombok.Setter;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "products")
-public abstract class Product {
+public class Product implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2694617636483893033L;
+
 	/**
 	 * The unique ID for the product
 	 */
 	@Id
-	@Getter
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name = "ID")
+	@Getter
 	private long id;
 	
 	/**
@@ -32,6 +41,7 @@ public abstract class Product {
 	@Getter
 	@Setter
 	@NotNull
+	@Column(name = "name", nullable = false)
 	private String name;
 	
 	/**
@@ -40,6 +50,7 @@ public abstract class Product {
 	@Getter
 	@Setter
 	@Min(0)
+	@Column(name = "price", nullable = false)
 	private float price;
 	
 	/**
@@ -50,6 +61,7 @@ public abstract class Product {
 	@Setter
 	@Min(0)
 	@Max(5)
+	@Column(name = "rating", nullable = false)
 	private float rating;
 	
 	/**
