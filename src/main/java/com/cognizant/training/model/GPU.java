@@ -21,7 +21,7 @@ public class GPU extends Product
 	
 	@Getter
 	@Setter
-	private float clockspeed;
+	private float clockSpeed;
 	
 	@Getter
 	@Setter
@@ -36,14 +36,14 @@ public class GPU extends Product
 			float rating,
 			String chipset,
 			float memory,
-			float clockspeed,
+			float clockSpeed,
 			String color,
 			float length
 	) {
 		super(name, price, rating);
 		this.chipset = chipset;
 		this.memory = memory;
-		this.clockspeed = clockspeed;
+		this.clockSpeed = clockSpeed;
 		this.color = color;
 		this.length = length;
 	}
