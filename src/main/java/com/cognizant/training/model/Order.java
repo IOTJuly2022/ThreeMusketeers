@@ -50,4 +50,6 @@ public class Order {
 	public Order(String owner, OrderStatus orderStatus) {
 		this.orderStatus = orderStatus;
 	}
+
+	public Order() { }
 }

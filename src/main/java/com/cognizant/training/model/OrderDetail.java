@@ -62,4 +62,6 @@ public class OrderDetail {
 		this.order = order;
 		this.product = product;
 	}
+
+	public OrderDetail() { }
 }

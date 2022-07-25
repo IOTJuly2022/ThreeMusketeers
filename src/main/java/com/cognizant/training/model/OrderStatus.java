@@ -39,4 +39,6 @@ public class OrderStatus {
 	public OrderStatus(String name) {
 		this.name = name;
 	}
+
+	public OrderStatus() { }
 }
