@@ -14,7 +14,7 @@ import lombok.Setter;
  * @author William Simpson
  */
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "products")
 public abstract class Product {
 	
