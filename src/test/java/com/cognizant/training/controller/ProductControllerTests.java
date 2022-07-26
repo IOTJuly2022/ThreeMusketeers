@@ -2,10 +2,7 @@ package com.cognizant.training.controller;
 
 import com.cognizant.training.model.Product;
 import com.cognizant.training.repository.ProductRepository;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -20,7 +17,6 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.doReturn;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ProductControllerTests {
@@ -32,7 +28,6 @@ public class ProductControllerTests {
     private TestRestTemplate restTemplate;
 
     private final PodamFactory factory = new PodamFactoryImpl();
-
 
     @Test
     @WithMockUser
