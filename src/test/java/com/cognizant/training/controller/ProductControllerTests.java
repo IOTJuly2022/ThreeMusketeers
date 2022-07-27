@@ -42,7 +42,8 @@ public class ProductControllerTests {
         );
 
         assertThat(resp.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(resp.getBody()).isEqualTo(product);
+        assertThat(resp.getBody()).isNotNull();
+        assertThat(resp.getBody().getId()).isEqualTo(product.getId());
     }
 
 

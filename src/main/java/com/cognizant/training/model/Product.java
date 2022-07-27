@@ -79,12 +79,4 @@ public class Product implements Serializable{
 	}
 
 	public Product() { }
-
-	@Override
-	public boolean equals(Object other) {
-		if (other == this) return true;
-		if (!(other instanceof Product)) return false;
-
-		return ((Product) other).id == this.id;
-	}
 }
