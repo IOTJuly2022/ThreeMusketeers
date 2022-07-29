@@ -22,7 +22,7 @@ public class Permission implements GrantedAuthority {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Getter
-    public long id;
+    private long id;
 
     /**
      * The permissions unique name. This field is required.
@@ -31,7 +31,7 @@ public class Permission implements GrantedAuthority {
     @Setter
     @Column(unique = true)
     @NotNull
-    public String name;
+    private String name;
 
     /**
      * Gets Spring's GrantedAuthority name.

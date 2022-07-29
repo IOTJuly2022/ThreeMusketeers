@@ -24,7 +24,7 @@ public class Role implements GrantedAuthority {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Getter
-    public long id;
+    private long id;
 
     /**
      * The role's unique name. This field is required.
@@ -33,7 +33,7 @@ public class Role implements GrantedAuthority {
     @Setter
     @Column(unique = true)
     @NotNull
-    public String name;
+    private String name;
 
     /**
      * All permissions granted to users that have this role
@@ -46,7 +46,7 @@ public class Role implements GrantedAuthority {
             joinColumns = @JoinColumn(name = "role_id"),
             inverseJoinColumns = @JoinColumn(name = "permission_id")
     )
-    public Set<Permission> permissions;
+    private Set<Permission> permissions;
 
     /**
      * Creates a new role

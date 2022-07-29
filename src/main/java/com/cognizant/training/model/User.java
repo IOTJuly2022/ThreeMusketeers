@@ -71,7 +71,7 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
-    public Set<Role> roles;
+    private Set<Role> roles;
 
     /**
      * All direct permissions granted to the user.
@@ -84,7 +84,7 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "permission_id")
     )
-    public Set<Permission> permissions;
+    private Set<Permission> permissions;
 
     /**
      * Creates a new user
