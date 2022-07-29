@@ -1,5 +1,8 @@
 package com.cognizant.training.security;
 
+import com.cognizant.training.model.User;
+import com.cognizant.training.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -7,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
+import java.util.Optional;
 
 /**
  * Service handling UserDetailsService implementation. Allowing for custom authentication and authorization.
@@ -16,20 +20,25 @@ import java.util.ArrayList;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
+    @Autowired
+    private UserRepository userRepository;
+
     /**
-     * Currently creates a dummy user for testing.
-     * <p>
-     * Searches for a user in the database given a username. If it exists, creates the UserDetails for that user.
+     * Searches for a user in the database given an email. If it exists, creates the UserDetails for that user.
      * Otherwise, throws an exception.
      *
-     * @param username user's username
-     * @return UserDetails for the given username
-     * @throws UsernameNotFoundException when a username is not found in the database
+     * @param email user's email
+     * @return UserDetails for the given email
+     * @throws UsernameNotFoundException when an email is not found in the database
      */
     @Override
     @Transactional
-    public UserDetails loadUserByUsername(String username)
+    public UserDetails loadUserByUsername(String email)
             throws UsernameNotFoundException {
-        return new UserDetailsImpl(1L, "username", "password", "email", new ArrayList<>());
+        Optional<User> oUser = userRepository.findByEmail(email);
+
+        if (oUser.isEmpty()) throw new UsernameNotFoundException("no user found with given email");
+
+        return new UserDetailsImpl(oUser.get());
     }
 }

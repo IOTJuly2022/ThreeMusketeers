@@ -1,11 +1,13 @@
 package com.cognizant.training.security;
 
+import com.cognizant.training.model.User;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.Set;
 
 /**
  * Implements the UserDetails for authenticated users of the application.
@@ -20,11 +22,6 @@ public class UserDetailsImpl implements UserDetails {
     @Getter
     @Setter
     private long id;
-
-    /**
-     * Username for the user
-     */
-    private final String username;
 
     /**
      * Password for the user
@@ -44,25 +41,15 @@ public class UserDetailsImpl implements UserDetails {
     private String email;
 
     /**
-     * Creates a new user UserDetailsImpl given an id, user, password, email, and authorities
+     * Creates a new UserDetails instance from a User instance.
      *
-     * @param id       user's unique id
-     * @param username user's username
-     * @param password user's password
-     * @param email    user's email
+     * @param user User to create details for
      */
-    public UserDetailsImpl(
-            long id,
-            String username,
-            String password,
-            String email,
-            Collection<? extends GrantedAuthority> authorities
-    ) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.authorities = authorities;
+    public UserDetailsImpl(User user) {
+        this.id = user.getId();
+        this.email = user.getEmail();
+        this.password = user.getPassword();
+        this.authorities = user.getAllPermissions();
     }
 
     /**
@@ -86,13 +73,13 @@ public class UserDetailsImpl implements UserDetails {
     }
 
     /**
-     * Gets the username of the user
+     * Gets the username, also known as the email, of the user
      *
-     * @return username of the user
+     * @return email of the user
      */
     @Override
     public String getUsername() {
-        return username;
+        return email;
     }
 
     /**
