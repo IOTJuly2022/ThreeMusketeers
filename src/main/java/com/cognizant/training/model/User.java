@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 /**
@@ -31,7 +32,8 @@ public class User {
      */
     @Getter
     @Setter
-    @Column(nullable = false, unique = true)
+    @Column(unique = true)
+    @NotNull
     private String email;
 
     /**
@@ -39,7 +41,7 @@ public class User {
      */
     @Getter
     @Setter
-    @Column(nullable = false)
+    @NotNull
     private String password;
 
     /**
@@ -47,7 +49,7 @@ public class User {
      */
     @Getter
     @Setter
-    @Column(nullable = false)
+    @NotNull
     private String firstName;
 
     /**
@@ -55,7 +57,7 @@ public class User {
      */
     @Getter
     @Setter
-    @Column(nullable = false)
+    @NotNull
     private String lastName;
 
     /**

@@ -5,6 +5,7 @@ import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 /**
  * Represents an individual permission a user may be granted.
@@ -28,7 +29,8 @@ public class Permission implements GrantedAuthority {
      */
     @Getter
     @Setter
-    @Column(unique = true, nullable = false)
+    @Column(unique = true)
+    @NotNull
     public String name;
 
     /**

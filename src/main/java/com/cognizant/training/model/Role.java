@@ -5,6 +5,7 @@ import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 /**
@@ -30,7 +31,8 @@ public class Role implements GrantedAuthority {
      */
     @Getter
     @Setter
-    @Column(unique = true, nullable = false)
+    @Column(unique = true)
+    @NotNull
     public String name;
 
     /**
