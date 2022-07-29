@@ -6,6 +6,7 @@ import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -46,7 +47,7 @@ public class Role implements GrantedAuthority {
             joinColumns = @JoinColumn(name = "role_id"),
             inverseJoinColumns = @JoinColumn(name = "permission_id")
     )
-    private Set<Permission> permissions;
+    private Set<Permission> permissions = new HashSet<>();
 
     /**
      * Creates a new role
