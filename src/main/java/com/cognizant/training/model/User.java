@@ -6,6 +6,8 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Represents a user of the application. Defines their personal attributes as well as
@@ -27,7 +29,7 @@ public class User {
 
     /**
      * The email for the user. Used for logging in.
-     *
+     * <p>
      * This field is required and must be unique across all users.
      */
     @Getter
@@ -89,5 +91,28 @@ public class User {
     /**
      * Creates a new user
      */
-    public User() { }
+    public User() {
+    }
+
+    /**
+     * Gets all permissions defined by the roles the user is granted.
+     *
+     * @return all permissions defined by the roles the user is granted.
+     */
+    public Set<Permission> getPermissionsFromRoles() {
+        return roles.stream()
+                .map(Role::getPermissions)
+                .flatMap(Set::stream)
+                .collect(Collectors.toSet());
+    }
+
+    /**
+     * Gets all permissions granted discretely and by roles granted to the user.
+     *
+     * @return all permissions granted discretely and by roles granted to the user.
+     */
+    public Set<Permission> getAllPermissions() {
+        return Stream.concat(permissions.stream(), getPermissionsFromRoles().stream())
+                .collect(Collectors.toSet());
+    }
 }
