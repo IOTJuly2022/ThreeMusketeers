@@ -3,6 +3,7 @@ package com.cognizant.training.controller;
 import java.util.List;
 import java.util.function.Function;
 
+import com.cognizant.training.exception.ProductNotFoundException;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -66,11 +67,4 @@ public class ProductController {
 	}
 }
 
-class ProductNotFoundException extends RuntimeException {
-	// Only here to prevent compiler warning
-	private static final long serialVersionUID = 3537154583187107896L;
 
-	ProductNotFoundException(Long id) {
-		super("Could not find Product of ID:: " + id);
-	}
-}
