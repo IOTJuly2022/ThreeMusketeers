@@ -1,5 +1,19 @@
-{"properties": [{
-  "name": "security.ignored",
-  "type": "java.lang.String",
-  "description": "A description for 'security.ignored'"
-}]}
+{
+  "properties": [
+    {
+      "name": "security.ignored",
+      "type": "java.lang.String",
+      "description": "A description for 'security.ignored'"
+    },
+    {
+      "name": "cognizant.jwt.secret",
+      "type": "java.lang.String",
+      "description": "The secret used to sign authentication tokens."
+    },
+    {
+      "name": "cognizant.jwt.expiration",
+      "type": "java.lang.Integer",
+      "description": "How long (in seconds) the JWT is valid for."
+    }
+  ]
+}
