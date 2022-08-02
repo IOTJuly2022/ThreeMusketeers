@@ -3,15 +3,11 @@ package com.cognizant.training;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.cognizant.training.model.Socket;
-
 @SpringBootApplication
 public class ThreeMusketeersApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ThreeMusketeersApplication.class, args);
-		Socket socket = new Socket();
-		socket.setName("asdf");
 	}
 
 	// Method below will check beans Spring Boot synthesizes on startup, helps with debugging
