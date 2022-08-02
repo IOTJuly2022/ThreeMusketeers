@@ -19,7 +19,7 @@ phases:
   commands:
     - echo Build completed on `date`
 
-  artifacts:
-    files:
-      - build/libs/*.jar
-    discard-paths: yes
+artifacts:
+  files:
+    - build/libs/*.jar
+  discard-paths: yes
