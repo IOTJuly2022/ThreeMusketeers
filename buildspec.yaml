@@ -7,11 +7,13 @@ phases:
   pre_build:
     commands:
       - echo In the pre_build phase...
-      - gradle test
+      - chmod +x gradlew
+      - ./gradlew test
 
   build:
     commands:
       - echo Build started on `date`
+      - chmod +x gradlew
       - gradle bootJar
 
   post_build:
