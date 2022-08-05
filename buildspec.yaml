@@ -1,0 +1,24 @@
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+      java: corretto11
+
+  pre_build:
+    commands:
+      - echo In the pre_build phase...
+#      - gradle test
+
+  build:
+    commands:
+      - echo Build started on `date`
+      - gradle bootJar
+
+  post_build:
+    commands:
+      - echo Build completed on `date`
+
+artifacts:
+  files:
+    - build/libs/*.jar
+  discard-paths: yes
