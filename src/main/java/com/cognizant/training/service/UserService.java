@@ -20,7 +20,6 @@ public class UserService implements IUserService {
     public void login(LoginRequest request) {
         if (request.getEmail().isBlank()) throw new LoginException("Email cannot be blank");
         if (request.getPassword().isBlank()) throw new LoginException("Password cannot be blank");
-
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
         );
