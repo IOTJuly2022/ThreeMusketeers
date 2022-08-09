@@ -45,7 +45,6 @@ public class User implements UserDetails {
     /**
      * The password used to authenticate the user. This field is required.
      */
-    @Getter
     @Setter
     @NotNull
     private String password;
