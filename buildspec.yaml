@@ -7,7 +7,7 @@ phases:
   pre_build:
     commands:
       - echo In the pre_build phase...
-#      - gradle test
+      - gradle test
 
   build:
     commands:
@@ -20,5 +20,5 @@ phases:
 
 artifacts:
   files:
-    - build/libs/*.jar
+    - "build/libs/*.jar"
   discard-paths: yes
