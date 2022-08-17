@@ -6,6 +6,14 @@
 
 @import '~mdb-angular-ui-kit/assets/scss/mdb.scss';
 
+@import "~src/colors";
+
 * {
   color: #ececec;
+}
+
+html,body
+{
+  background: $background;
+  overflow-x: hidden;
 }
