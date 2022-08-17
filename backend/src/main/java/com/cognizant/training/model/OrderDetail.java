@@ -64,4 +64,12 @@ public class OrderDetail {
 	}
 
 	public OrderDetail() { }
+
+	/**
+	 * Changes the quantity of the product in an order
+	 * @param amount amount to change the quantity of the product
+	 */
+	public void changeQuantity(int amount){
+		this.quantity = Math.min(0,this.quantity+amount);
+	}
 }

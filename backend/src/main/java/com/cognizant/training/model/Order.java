@@ -6,6 +6,10 @@ import javax.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
+
 /**
  * Represents a build that a customer is working on.
  * 
@@ -29,7 +33,9 @@ public class Order {
 	@Getter
 	@Setter
 	@NotNull
-	public String owner;
+	@ManyToOne()
+	@JoinColumn(name="user_id")
+	public User owner;
 	
 	/**
 	 * The status of the order
@@ -40,7 +46,17 @@ public class Order {
 	@JoinColumn(name="OrderStatusID")
 	@NotNull
 	public OrderStatus orderStatus;
-	
+
+	/**
+	 * Set of all orders
+	 */
+	@Getter
+	@Setter
+	@OneToMany
+	@JoinColumn(name = "OrderID")
+	private Set<OrderDetail> orderDetailSet = new HashSet<>();
+
+
 	/**
 	 * Creates a new order from the given information
 	 * 
@@ -52,4 +68,25 @@ public class Order {
 	}
 
 	public Order() { }
+
+	/**
+	 * Update the product in/to the set of orderDetails
+	 * @param product product
+	 * @param count quantity of the product (adding/subtracting)
+	 */
+	public void addProductToOrder(Product product, int count){
+		Optional<OrderDetail> oOrderDetail = orderDetailSet.stream().filter(orderDetail ->
+				orderDetail.getProduct().getId() == product.getId()).findFirst();
+
+		if(oOrderDetail.isPresent()){
+			oOrderDetail.get().changeQuantity(count);
+			return;
+		}
+		OrderDetail orderDetail = new OrderDetail();
+		orderDetail.setProduct(product);
+		orderDetail.changeQuantity(count);
+		orderDetail.setOrder(this);
+		orderDetailSet.add(orderDetail);
+	}
+
 }
