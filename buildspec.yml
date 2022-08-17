@@ -7,12 +7,12 @@ phases:
   pre_build:
     commands:
       - echo In the pre_build phase...
-      - ./gradlew test
+      - cd backend && ./gradlew test
 
   build:
     commands:
       - echo Build started on `date`
-      - ./gradlew bootJar
+      - cd backend && ./gradlew bootJar
 
   post_build:
     commands:
@@ -20,5 +20,5 @@ phases:
 
 artifacts:
   files:
-    - "build/libs/*.jar"
+    - "backend/build/libs/*.jar"
   discard-paths: yes
