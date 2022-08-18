@@ -1,1 +1,77 @@
-<p>register works!</p>
+<section class="login row d-flex justify-content-center my-5">
+  <div class="card card-login col-lg-6 col-md-8 col-sm-11 bg-dark text-light">
+    <h1 class="card-title text-center pt-3">Register</h1>
+    <div class="card-body">
+      <form [formGroup]="registerForm">
+        <mdb-form-control class="form-white mb-4">
+          <input
+            mdbInput
+            mdbValidate
+            [validateSuccess]="false"
+            type="email"
+            id="email"
+            formControlName="email"
+            class="form-control"
+          />
+          <label mdbLabel class="form-label" for="email">Email</label>
+        </mdb-form-control>
+        <mdb-form-control class="form-white mb-4">
+          <input
+            mdbInput
+            mdbValidate
+            [validateSuccess]="false"
+            type="text"
+            id="firstName"
+            formControlName="firstName"
+            class="form-control"
+          />
+          <label mdbLabel class="form-label" for="firstName">First Name</label>
+        </mdb-form-control>
+        <mdb-form-control class="form-white mb-4">
+          <input
+            mdbInput
+            mdbValidate
+            [validateSuccess]="false"
+            type="text"
+            id="lastName"
+            formControlName="lastName"
+            class="form-control"
+          />
+          <label mdbLabel class="form-label" for="lastName">Last Name</label>
+        </mdb-form-control>
+
+        <mdb-form-control class="form-white mb-4">
+          <input
+            mdbInput
+            mdbValidate
+            [validateSuccess]="false"
+            type="password"
+            id="password"
+            formControlName="password"
+            class="form-control"
+          />
+          <label mdbLabel class="form-label" for="password">Password</label>
+        </mdb-form-control>
+
+        <mdb-form-control class="form-white mb-4">
+          <input
+            mdbInput
+            mdbValidate
+            [validateSuccess]="false"
+            type="password"
+            id="confirmPassword"
+            formControlName="confirmPassword"
+            class="form-control"
+          />
+          <label mdbLabel class="form-label" for="confirmPassword">Confirm Password</label>
+        </mdb-form-control>
+
+        <button type="submit" class="btn btn-primary btn-block" (click)="onRegister()" [disabled]="loading">
+          <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          <span *ngIf="!loading">Create Account</span>
+        </button>
+      </form>
+      <p class="text-muted text-center pt-2">Already have an account? <a routerLink="/login">Login now!</a></p>
+    </div>
+  </div>
+</section>

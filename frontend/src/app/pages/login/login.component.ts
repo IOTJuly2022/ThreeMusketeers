@@ -22,6 +22,11 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    if (this.authenticationService.user) {
+      this.router.navigate(['/']).then(() => {
+        console.log('already authenticated');
+      });
+    }
   }
 
   /**
