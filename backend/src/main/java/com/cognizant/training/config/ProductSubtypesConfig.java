@@ -16,11 +16,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 @Configuration
 public class ProductSubtypesConfig {
-    @Bean
+    /*@Bean
     @Primary
 	ObjectMapper objectMapper() {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.registerSubtypes(GPU.class, Memory.class, Motherboard.class, Processor.class);
         return objectMapper;
-    }
+    }*/
 }

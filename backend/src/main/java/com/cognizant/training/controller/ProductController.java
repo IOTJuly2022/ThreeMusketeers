@@ -59,12 +59,11 @@ public class ProductController {
 	// GET:: Fetch all Product entities of given type
 	// Intended for use when browsing Catalog by specific product subtype, with String stype matching a JsonSubtype in #Product
 	@GetMapping("/v1/catalog/{stype}")
-	List<? extends Product> listAllByType(@PathVariable String stype) throws JsonProcessingException, JsonMappingException{
+	List<? extends Product> listAllByType(@PathVariable String stype) {
 		return repo.findAll().stream().filter(prd -> prd.getClass().getSimpleName().equalsIgnoreCase(stype)).toList();
 	}
 
-	// POST:: Add new Product to database, mapped to its subtype. Subtype mapped by
-	// "type": "typename" in POST body JSON
+	// POST:: Add new Product to database, mapped to its subtype. Subtype mapped by "type": "typename" in POST body JSON
 	@PostMapping("/v1/products")
 	Product newProduct(@RequestBody Product newProd) {
 		return repo.save(newProd);
@@ -76,8 +75,6 @@ public class ProductController {
 		return repo.findById(id).orElseThrow(() -> new ProductNotFoundException(id));
 	}
 
-	
-	
 	// PUT:: "Replaces" an entity by re-defining all of its fields except ID
 	@PutMapping("/v1/products/{id}")
 	Product replaceProduct(@RequestBody Product newProd, @PathVariable Long id) {
