@@ -3,18 +3,17 @@ package com.cognizant.training.controller;
 import com.cognizant.training.model.User;
 import com.cognizant.training.repository.UserRepository;
 import com.cognizant.training.request.LoginRequest;
+import com.cognizant.training.request.RegisterRequest;
 import com.cognizant.training.response.LoginResponse;
 import com.cognizant.training.service.UserService;
 import com.cognizant.training.util.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 @RequestMapping(path = "/v1")
 public class AuthController {
 
@@ -27,9 +26,14 @@ public class AuthController {
     @Autowired
     private JwtUtils jwtUtils;
 
+    /**
+     * The password encoder to use when encoding saving to the database.
+     */
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @PostMapping(path="/login")
-    public @ResponseBody
-    LoginResponse userLogin(@RequestBody LoginRequest loginRequest) {
+    public LoginResponse userLogin(@RequestBody LoginRequest loginRequest) {
         // Will throw runtime errors if anything fails and responses handled by exception handler
         userService.login(loginRequest);
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -41,5 +45,18 @@ public class AuthController {
         response.setToken(jwtUtils.generateJwtToken(user));
 
         return response;
+    }
+
+    @PostMapping(path="/register")
+    public ResponseEntity<Void> userRegister(@RequestBody RegisterRequest request) {
+        User user = new User();
+        user.setEmail(request.getEmail());
+        user.setFirstName(request.getFirstName());
+        user.setLastName(request.getLastName());
+        user.setPassword(passwordEncoder.encode(request.getPassword()));
+
+        user = userRepository.saveAndFlush(user);
+
+        return ResponseEntity.ok().body(null);
     }
 }
