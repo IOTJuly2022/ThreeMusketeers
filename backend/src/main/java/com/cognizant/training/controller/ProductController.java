@@ -20,6 +20,8 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import io.jsonwebtoken.lang.Collections;
+
 /**
  * Accepts requests for any Product entity and its given subtypes. Maps Product
  * objects to their subtypes as defined in #Product annotations using mapper in
@@ -58,13 +60,7 @@ public class ProductController {
 	// Intended for use when browsing Catalog by specific product subtype, with String stype matching a JsonSubtype in #Product
 	@GetMapping("/v1/catalog/{stype}")
 	List<? extends Product> listAllByType(@PathVariable String stype) throws JsonProcessingException, JsonMappingException{
-		List<Product> result = new ArrayList<Product>();
-		for(Product p : repo.findAll()) {
-			JsonNode mappedType = typeMapper.readTree(typeMapper.writeValueAsString(p));
-			if(stype.equalsIgnoreCase(mappedType.get("type").asText()))
-				result.add(p);
-		}
-		return result;
+		return repo.findAll().stream().filter(prd -> prd.getClass().getSimpleName().equalsIgnoreCase(stype)).toList();
 	}
 
 	// POST:: Add new Product to database, mapped to its subtype. Subtype mapped by
