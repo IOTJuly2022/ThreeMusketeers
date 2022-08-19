@@ -29,6 +29,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {JwtInterceptor} from "./_helpers/jwt.interceptor";
 import { FooterComponent } from './_components/footer/footer.component';
+import { AlertComponent } from './_components/alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { FooterComponent } from './_components/footer/footer.component';
     LoginComponent,
     RegisterComponent,
     FooterComponent,
-    NavbarComponent
+    NavbarComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,6 @@
+<div class="container p-5" *ngIf="alerts.length > 0">
+  <div *ngFor="let alert of alerts" [class]="alert.getCSSClasses()+' alert-dismissible'" role="alert">
+    {{ alert.message }}
+    <i role="button" class="fas fa-times text-dark alert-close" data-dimiss="alert" aria-label="Close" (click)="close(alert)"></i>
+  </div>
+</div>
