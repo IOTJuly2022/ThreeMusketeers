@@ -47,6 +47,7 @@ export class LoginComponent implements OnInit {
     this.authenticationService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe({
       next: () => {
         this.router.navigate(['/']).then(() => {
+          window.location.reload();
           console.log('success');
         })
       },
@@ -58,5 +59,4 @@ export class LoginComponent implements OnInit {
     this.loading = false;
     return true;
   }
-
 }
