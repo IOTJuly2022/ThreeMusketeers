@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, ValidationErrors, Validators} from "@angular/forms";
+import {AbstractControl, FormControl, FormGroup, ValidationErrors, Validators} from "@angular/forms";
 import {AuthenticationService} from "../../_services/authentication.service";
 import {Router} from "@angular/router";
+import {AlertService} from "../../_services/alert.service";
 
 @Component({
   selector: 'app-register',
@@ -21,24 +22,23 @@ export class RegisterComponent implements OnInit {
   constructor(
     private authService: AuthenticationService,
     private router: Router,
+    private alertService: AlertService,
   ) { }
 
   ngOnInit(): void {
     if (this.authService.user) {
       this.router.navigate(['/']).then(() => {
-        console.log('already authenticated');
+        this.alertService.warning('You are already signed in.');
       });
     }
   }
 
   onRegister() {
     if (!this.registerForm.valid) {
-      console.log('form invalid');
       return;
     }
 
     if (this.registerForm.value.password != this.registerForm.value.confirmPassword) {
-      console.log('passwords do not match');
       return;
     }
 
@@ -51,14 +51,30 @@ export class RegisterComponent implements OnInit {
     ).subscribe({
       next: () => {
         this.router.navigate(['/']).then(() => {
-          console.log('registered');
+          this.alertService.success("Registration successful!");
         });
       },
       error: err => {
-        console.log('Error:', err);
+        if (err.status === 400) {
+          this.alertService.error('Email is already in use');
+        } else {
+          this.alertService.error(`Error: ${err.error.message}`);
+        }
       },
     }).add(() => {
       this.loading = false;
     });
+  }
+
+  get email(): AbstractControl {
+    return this.registerForm.get('email')!;
+  }
+
+  get password(): AbstractControl {
+    return this.registerForm.get('password')!;
+  }
+
+  get confirmPassword(): AbstractControl {
+    return this.registerForm.get('confirmPassword')!;
   }
 }

@@ -3,7 +3,7 @@
     <h1 class="card-title text-center pt-3">Register</h1>
     <div class="card-body">
       <form [formGroup]="registerForm">
-        <mdb-form-control class="form-white mb-4">
+        <mdb-form-control class="form-white mb-5">
           <input
             mdbInput
             mdbValidate
@@ -14,8 +14,14 @@
             class="form-control"
           />
           <label mdbLabel class="form-label" for="email">Email</label>
+          <mdb-error
+            *ngIf="email?.invalid && (email?.dirty || email?.touched)"
+            class="my-1"
+          >
+            Must be valid email address
+          </mdb-error>
         </mdb-form-control>
-        <mdb-form-control class="form-white mb-4">
+        <mdb-form-control class="form-white mb-5">
           <input
             mdbInput
             mdbValidate
@@ -27,7 +33,7 @@
           />
           <label mdbLabel class="form-label" for="firstName">First Name</label>
         </mdb-form-control>
-        <mdb-form-control class="form-white mb-4">
+        <mdb-form-control class="form-white mb-5">
           <input
             mdbInput
             mdbValidate
@@ -40,7 +46,7 @@
           <label mdbLabel class="form-label" for="lastName">Last Name</label>
         </mdb-form-control>
 
-        <mdb-form-control class="form-white mb-4">
+        <mdb-form-control class="form-white mb-5">
           <input
             mdbInput
             mdbValidate
@@ -51,9 +57,15 @@
             class="form-control"
           />
           <label mdbLabel class="form-label" for="password">Password</label>
+          <mdb-error
+            *ngIf="password?.invalid && (password?.dirty || password?.touched)"
+            class="my-1"
+          >
+           Password must be at least 6 characters
+          </mdb-error>
         </mdb-form-control>
 
-        <mdb-form-control class="form-white mb-4">
+        <mdb-form-control class="form-white mb-5">
           <input
             mdbInput
             mdbValidate
@@ -64,6 +76,11 @@
             class="form-control"
           />
           <label mdbLabel class="form-label" for="confirmPassword">Confirm Password</label>
+          <mdb-error
+            *ngIf="password.valid && password.value != confirmPassword.value"
+          >
+            Password does not match
+          </mdb-error>
         </mdb-form-control>
 
         <button type="submit" class="btn btn-primary btn-block" (click)="onRegister()" [disabled]="loading">

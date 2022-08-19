@@ -1,7 +1,7 @@
 class Alert {
+  id: string = 'main';
   type: AlertType = AlertType.Info;
   message: string = '';
-  id: string = '';
   persist: boolean = false;
   fade: boolean = false;
 
@@ -10,15 +10,15 @@ class Alert {
   }
 
   getCSSClasses(): string {
-    return `alert alert-${this.type}`
+    return `alert alert-${this.type} ${this.fade ? 'fade' : ''}`
   }
 }
 
 enum AlertType {
   Success = 'success',
-  Error = 'error',
+  Error = 'danger',
   Warning = 'warning',
   Info = 'info',
 }
 
-export {Alert};
+export {Alert, AlertType};

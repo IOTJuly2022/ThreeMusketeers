@@ -10,7 +10,7 @@ import {NavigationStart, Router} from "@angular/router";
 })
 export class AlertComponent implements OnInit {
 
-  @Input() id: string = '';
+  @Input() id: string = 'default';
 
   alerts: Alert[] = [];
 
