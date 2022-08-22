@@ -4,15 +4,16 @@ phases:
     runtime-versions:
       java: corretto11
 
-  pre_build:
-    commands:
-      - echo In the pre_build phase...
-      - cd backend
-      - gradle test
+#   pre_build:
+#     commands:
+#       - echo In the pre_build phase...
+#       - cd backend
+#       - gradle test
 
   build:
     commands:
       - echo Build started on `date`
+      - cd backend
       - gradle bootJar
 
   post_build:
