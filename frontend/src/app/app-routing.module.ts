@@ -3,16 +3,15 @@ import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { CatalogComponent } from './pages/catalog/catalog.component';
 import {HomeComponent} from "./pages/home/home.component";
 import {LoginComponent} from "./pages/login/login.component";
-
+import {RegisterComponent} from "./pages/register/register.component";
+import {CartComponent} from "./pages/cart/cart.component";
+import {AuthGuard } from './_helpers/auth.guard'
 const routes: Routes = [
   {path: '', pathMatch: 'full', component: HomeComponent},
-<<<<<<< Updated upstream
-  {path: 'login', component: LoginComponent}
-=======
+  {path: 'catalog', component: CatalogComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'catalog', component: CatalogComponent},
->>>>>>> Stashed changes
+  {path: 'cart', component: CartComponent, canActivate: [AuthGuard]},
 ];
 const routerOptions: ExtraOptions = {
   scrollPositionRestoration: 'enabled',
