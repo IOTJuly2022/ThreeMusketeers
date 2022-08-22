@@ -4,21 +4,17 @@ import com.cognizant.training.model.*;
 import com.cognizant.training.repository.OrderRepository;
 import com.cognizant.training.repository.ProductRepository;
 import com.cognizant.training.request.CartRequest;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashSet;
-import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @RestController
 @RequestMapping(path = "/v1")
-public class CartContoller {
+public class CartController {
 
     @Autowired
     private OrderRepository orderRepo;
