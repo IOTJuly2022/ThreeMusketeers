@@ -54,7 +54,7 @@ public class Order {
 	@Setter
 	@OneToMany
 	@JoinColumn(name = "OrderID")
-	private Set<OrderDetail> orderDetailSet = new HashSet<>();
+	private Set<OrderDetail> orderDetails = new HashSet<>();
 
 
 	/**
@@ -75,7 +75,7 @@ public class Order {
 	 * @param count quantity of the product (adding/subtracting)
 	 */
 	public void addProductToOrder(Product product, int count){
-		Optional<OrderDetail> oOrderDetail = orderDetailSet.stream().filter(orderDetail ->
+		Optional<OrderDetail> oOrderDetail = orderDetails.stream().filter(orderDetail ->
 				orderDetail.getProduct().getId() == product.getId()).findFirst();
 
 		if(oOrderDetail.isPresent()){
@@ -86,7 +86,7 @@ public class Order {
 		orderDetail.setProduct(product);
 		orderDetail.changeQuantity(count);
 		orderDetail.setOrder(this);
-		orderDetailSet.add(orderDetail);
+		orderDetails.add(orderDetail);
 	}
 
 }

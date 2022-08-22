@@ -2,14 +2,18 @@ package com.cognizant.training.controller;
 
 import com.cognizant.training.model.Order;
 import com.cognizant.training.model.Product;
+import com.cognizant.training.model.User;
 import com.cognizant.training.repository.OrderRepository;
 import com.cognizant.training.repository.ProductRepository;
 import com.cognizant.training.request.CartRequest;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -39,6 +43,12 @@ public class CartContoller {
         order.get().addProductToOrder(product.get(), cartRequest.getCount());
 
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("v1/users/{user_id}/cart")
+    public ResponseEntity<List<Order>> getAllCarts(@PathVariable Long user_id){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return ResponseEntity.ok(orderRepo.findAllByOwner(user).orElse(List.of()));
     }
 
 }
