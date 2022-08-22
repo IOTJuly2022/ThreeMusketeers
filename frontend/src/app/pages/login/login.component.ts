@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthenticationService} from "../../_services/authentication.service";
 import {Router} from "@angular/router";
+import {AlertService} from "../../_services/alert.service";
 
 @Component({
   selector: 'app-login',
@@ -19,9 +20,15 @@ export class LoginComponent implements OnInit {
   constructor(
     private authenticationService: AuthenticationService,
     private router: Router,
+    private alertService: AlertService,
   ) { }
 
   ngOnInit(): void {
+    if (this.authenticationService.user) {
+      this.router.navigate(['/']).then(() => {
+        this.alertService.warning('You are already signed in.');
+      });
+    }
   }
 
   /**
@@ -31,8 +38,6 @@ export class LoginComponent implements OnInit {
    */
   onLogin(): boolean {
     if (!this.loginForm.valid) {
-      // Alert that failsed
-      console.log('invalid form');
       return false;
     }
 
@@ -42,16 +47,20 @@ export class LoginComponent implements OnInit {
     this.authenticationService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe({
       next: () => {
         this.router.navigate(['/']).then(() => {
-          console.log('success');
+          window.location.reload();
+          this.alertService.success("Successfully logged in!");
         })
       },
       error: (err) => {
-        console.log('error', err);
+        if (err.status === 401) {
+          this.alertService.error('Invalid email and password combination');
+        } else {
+          this.alertService.error(`Error: ${err.error.message}`);
+        }
       },
     });
 
     this.loading = false;
     return true;
   }
-
 }

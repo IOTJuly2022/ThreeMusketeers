@@ -19,4 +19,8 @@ public class LoginResponse {
     @Getter
     @Setter
     private String email;
+
+    @Getter
+    @Setter
+    private Long id;
 }

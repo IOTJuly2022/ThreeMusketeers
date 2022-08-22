@@ -2,6 +2,7 @@ package com.cognizant.training.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -60,7 +61,7 @@ public class ProductController {
 	// Intended for use when browsing Catalog by specific product subtype, with String stype matching a JsonSubtype in #Product
 	@GetMapping("/v1/catalog/{stype}")
 	List<? extends Product> listAllByType(@PathVariable String stype) {
-		return repo.findAll().stream().filter(prd -> prd.getClass().getSimpleName().equalsIgnoreCase(stype)).toList();
+		return repo.findAll().stream().filter(prd -> prd.getClass().getSimpleName().equalsIgnoreCase(stype)).collect(Collectors.toList());
 	}
 
 	// POST:: Add new Product to database, mapped to its subtype. Subtype mapped by "type": "typename" in POST body JSON

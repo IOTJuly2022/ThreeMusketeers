@@ -1,0 +1,19 @@
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+      nodejs: 14
+  pre_build:
+    commands:
+      - cd frontend
+      - npm install
+      - npm install -g @angular/cli
+  build:
+    commands:
+      - echo Build started on `date`
+      - ng build --prod --aot
+artifacts:
+  files:
+      - '**/*'
+  base-directory: 'frontend/dist*'
+  discard-paths: yes

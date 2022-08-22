@@ -4,7 +4,9 @@ import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
+import net.minidev.json.annotate.JsonIgnore;
 
 /**
  * Represents an single detail for an order. Orders may have many order details.
@@ -12,6 +14,7 @@ import lombok.*;
  * @author William Simpson
  */
 @Entity
+@JsonIgnoreProperties(value={"order"})
 @Table(name = "order_details")
 public class OrderDetail {
 	/**
@@ -38,6 +41,7 @@ public class OrderDetail {
 	@ManyToOne
 	@JoinColumn(name="OrderID")
 	@NotNull
+
 	public Order order;
 	
 	/**

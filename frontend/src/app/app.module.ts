@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
-
+import { NavbarComponent } from './_components/navbar/navbar.component';
 // MDB Modules
 import { MdbAccordionModule } from 'mdb-angular-ui-kit/accordion';
 import { MdbCarouselModule } from 'mdb-angular-ui-kit/carousel';
@@ -25,10 +25,14 @@ import { MdbTooltipModule } from 'mdb-angular-ui-kit/tooltip';
 import { MdbValidationModule } from 'mdb-angular-ui-kit/validation';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {ReactiveFormsModule} from "@angular/forms";
+import {ReactiveFormsModule, FormsModule} from "@angular/forms";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {JwtInterceptor} from "./_helpers/jwt.interceptor";
 import { FooterComponent } from './_components/footer/footer.component';
+import { CatalogComponent } from './pages/catalog/catalog.component';
+import { AlertComponent } from './_components/alert/alert.component';
+import { CartComponent } from './pages/cart/cart.component';
+import { ProductService } from './_services/catalog/products.service';
 
 @NgModule({
   declarations: [
@@ -36,7 +40,11 @@ import { FooterComponent } from './_components/footer/footer.component';
     HomeComponent,
     LoginComponent,
     RegisterComponent,
-    FooterComponent
+    FooterComponent,
+    NavbarComponent,
+    AlertComponent,
+    CartComponent,
+    CatalogComponent
   ],
   imports: [
     BrowserModule,
@@ -57,6 +65,7 @@ import { FooterComponent } from './_components/footer/footer.component';
     MdbTabsModule,
     MdbTooltipModule,
     MdbValidationModule,
+    FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
   ],
@@ -66,6 +75,7 @@ import { FooterComponent } from './_components/footer/footer.component';
       useClass: JwtInterceptor,
       multi: true,
     },
+    ProductService
   ],
   bootstrap: [AppComponent]
 })
