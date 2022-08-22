@@ -1,0 +1,21 @@
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+      java: corretto11
+
+  build:
+    commands:
+      - echo Build started on `date`
+      - cd auth
+      - chmod +x gradlew
+      - ./gradlew bootJar
+
+  post_build:
+    commands:
+      - echo Build completed on `date`
+
+artifacts:
+  files:
+    - "auth/build/libs/*.jar"
+  discard-paths: yes

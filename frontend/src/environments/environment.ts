@@ -7,6 +7,7 @@ export const environment = {
 
   // The API endpoint for authenticating a user.
   AUTHENTICATION_API_URL: 'http://localhost:5000/v1',
+  ORDERS_API_URL: 'http://localhost:5001/v1',
 };
 
 /*
