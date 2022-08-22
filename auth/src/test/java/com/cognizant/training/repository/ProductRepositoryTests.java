@@ -2,7 +2,6 @@ package com.cognizant.training.repository;
 
 import com.cognizant.training.H2JPAConfig;
 import com.cognizant.training.ThreeMusketeersApplication;
-import com.cognizant.training.model.Product;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

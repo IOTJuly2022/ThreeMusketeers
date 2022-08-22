@@ -91,12 +91,6 @@ public class User implements UserDetails {
     )
     private Set<Permission> permissions = new HashSet<>();
 
-    @Getter
-    @Setter
-    @OneToOne
-    @JoinColumn(name="order_id")
-    private Order order;
-
     /**
      * Creates a new user
      */

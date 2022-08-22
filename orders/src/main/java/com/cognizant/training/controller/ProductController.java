@@ -24,9 +24,6 @@ import java.util.stream.Collectors;
 public class ProductController {
 
 	private final ProductRepository repo;
-	
-	@Autowired
-	private ObjectMapper typeMapper;
 
 	ProductController(ProductRepository repos) {
 		repo = repos;

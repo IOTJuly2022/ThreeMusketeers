@@ -1,7 +1,5 @@
 package com.cognizant.training.controller;
 
-import com.cognizant.training.model.Product;
-import com.cognizant.training.repository.ProductRepository;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

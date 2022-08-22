@@ -19,12 +19,6 @@ import java.sql.SQLIntegrityConstraintViolationException;
 @ControllerAdvice
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public class ServiceExceptionHandler extends ResponseEntityExceptionHandler {
-
-    @ExceptionHandler(ProductNotFoundException.class)
-    public ResponseEntity<Object> handleProductNotFound(ProductNotFoundException ex) {
-        return new ServiceError(HttpStatus.BAD_REQUEST, ex.getMessage()).buildResponseEntity();
-    }
-
     @ExceptionHandler(BadCredentialsException.class)
     public ResponseEntity<Object> handleBadCredentialsException(BadCredentialsException ex) {
         return new ServiceError(HttpStatus.UNAUTHORIZED, ex.getMessage()).buildResponseEntity();

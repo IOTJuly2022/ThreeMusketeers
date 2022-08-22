@@ -3,11 +3,13 @@ package com.cognizant.training.controller;
 import com.cognizant.training.model.Order;
 import com.cognizant.training.model.Product;
 import com.cognizant.training.repository.OrderRepository;
+import com.cognizant.training.repository.OrderStatusRepository;
 import com.cognizant.training.repository.ProductRepository;
 import com.cognizant.training.request.CartRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -22,23 +24,39 @@ public class CartContoller {
     @Autowired
     private ProductRepository productRepo;
 
-    @PutMapping("v1/users/{user_id}/cart/{cart_id}")
-    public ResponseEntity<String> findCart(@RequestBody CartRequest cartRequest, @PathVariable Long user_id, @PathVariable Long cart_id){
-        Optional<Order> order = orderRepo.findById(cart_id);
+    @Autowired
+    private OrderStatusRepository orderStatusRepository;
 
-        if (order.isEmpty())
-            return new ResponseEntity<>("Order Not Found",HttpStatus.NOT_FOUND);
-        if(!order.get().getOwnerId().equals(user_id))
-            return new ResponseEntity<>("User Doesn't Own Cart", HttpStatus.BAD_REQUEST);
+    @PutMapping("users/{user_id}/cart")
+    public ResponseEntity<String> updateCart(@RequestBody CartRequest cartRequest, @PathVariable Long user_id){
+        Order order = getOrCreateOrder(user_id);
 
         Optional<Product> product = productRepo.findById(cartRequest.getProduct());
 
         if(product.isEmpty())
             return new ResponseEntity<>("Product Not Found",HttpStatus.NOT_FOUND);
 
-        order.get().addProductToOrder(product.get(), cartRequest.getCount());
-
+        order.addProductToOrder(product.get(), cartRequest.getCount());
+        orderRepo.saveAndFlush(order);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("users/{user_id}/cart")
+    public ResponseEntity<Order> getAllCarts(@PathVariable Long user_id){
+        Order order = getOrCreateOrder(user_id);
+        return ResponseEntity.ok(order);
+    }
+
+    private Order getOrCreateOrder(Long userId) {
+        Order order = orderRepo.findByOwnerId(userId);
+        if (order == null) {
+            order = new Order();
+            order.setOwnerId(userId);
+            order.setOrderStatus(orderStatusRepository.getByName("CREATING"));
+            order = orderRepo.saveAndFlush(order);
+        }
+
+        return order;
     }
 
 }
