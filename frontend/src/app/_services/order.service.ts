@@ -17,7 +17,7 @@ export class OrderService {
     if(!user){
       return of([]);
     }
-    return this.httpClient.get(`${environment.AUTHENTICATION_API_URL}/users/${user.id}/cart`);
+    return this.httpClient.get(`${environment.ORDERS_API_URL}/users/${user.id}/cart`);
   }
 
   updateQuantityForSingleProduct(orderDetail : any){
@@ -25,7 +25,7 @@ export class OrderService {
     if(!user) {
       return of();
     }
-    return this.httpClient.put(`${environment.AUTHENTICATION_API_URL}/users/${user.id}/cart`,{product: orderDetail.product.id,
+    return this.httpClient.put(`${environment.ORDERS_API_URL}/users/${user.id}/cart`,{product: orderDetail.product.id,
                                                                                               count: orderDetail.quantity});
   }
 
