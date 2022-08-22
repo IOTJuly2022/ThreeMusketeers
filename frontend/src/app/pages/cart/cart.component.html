@@ -1,0 +1,16 @@
+<section>
+  <div class="text-center" *ngIf="availItems == false">
+    <br><br>
+    <h1>No items in cart</h1 >
+  </div>
+  <div *ngIf="availItems">
+    <h2 class="text-center">Your Items</h2>
+    <table>
+      <tr *ngFor="let orderDetail of orderList.orderDetails">
+        <td>{{orderDetail.product.name}}</td>
+        <td>{{orderDetail.quantity}}</td>
+        <td>{{orderDetail.product.price}}</td>
+      </tr>
+    </table>
+  </div>
+</section>
