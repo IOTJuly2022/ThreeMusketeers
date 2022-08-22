@@ -1,16 +1,20 @@
 package com.cognizant.training.controller;
 
-import com.cognizant.training.model.Order;
-import com.cognizant.training.model.Product;
+import com.cognizant.training.model.*;
 import com.cognizant.training.repository.OrderRepository;
 import com.cognizant.training.repository.ProductRepository;
 import com.cognizant.training.request.CartRequest;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @RestController
 @RequestMapping(path = "/v1")
@@ -22,14 +26,12 @@ public class CartContoller {
     @Autowired
     private ProductRepository productRepo;
 
-    @PutMapping("v1/users/{user_id}/cart/{cart_id}")
-    public ResponseEntity<String> findCart(@RequestBody CartRequest cartRequest, @PathVariable Long user_id, @PathVariable Long cart_id){
-        Optional<Order> order = orderRepo.findById(cart_id);
+    @PutMapping("users/{user_id}/cart")
+    public ResponseEntity<String> updateCart(@RequestBody CartRequest cartRequest, @PathVariable Long user_id){
+        Optional<Order> order = orderRepo.findAllByOwner_Id(user_id);
 
         if (order.isEmpty())
             return new ResponseEntity<>("Order Not Found",HttpStatus.NOT_FOUND);
-        if(!order.get().getOwner().getId().equals(user_id))
-            return new ResponseEntity<>("User Doesn't Own Cart", HttpStatus.BAD_REQUEST);
 
         Optional<Product> product = productRepo.findById(cartRequest.getProduct());
 
@@ -37,8 +39,17 @@ public class CartContoller {
             return new ResponseEntity<>("Product Not Found",HttpStatus.NOT_FOUND);
 
         order.get().addProductToOrder(product.get(), cartRequest.getCount());
-
+        orderRepo.saveAndFlush(order.get());
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("users/{user_id}/cart")
+    public ResponseEntity<Optional<Order>> getAllCarts(@PathVariable Long user_id){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Optional<Order> order = orderRepo.findAllByOwner_Id((user.getId()));
+        if(order.isPresent())
+            return ResponseEntity.ok(order);
+        else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
 }
