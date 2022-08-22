@@ -29,8 +29,10 @@ import {ReactiveFormsModule, FormsModule} from "@angular/forms";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {JwtInterceptor} from "./_helpers/jwt.interceptor";
 import { FooterComponent } from './_components/footer/footer.component';
+import { CatalogComponent } from './pages/catalog/catalog.component';
 import { AlertComponent } from './_components/alert/alert.component';
 import { CartComponent } from './pages/cart/cart.component';
+import { ProductService } from './_services/catalog/products.service';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,8 @@ import { CartComponent } from './pages/cart/cart.component';
     FooterComponent,
     NavbarComponent,
     AlertComponent,
-    CartComponent
+    CartComponent,
+    CatalogComponent
   ],
   imports: [
     BrowserModule,
@@ -72,6 +75,7 @@ import { CartComponent } from './pages/cart/cart.component';
       useClass: JwtInterceptor,
       multi: true,
     },
+    ProductService
   ],
   bootstrap: [AppComponent]
 })
