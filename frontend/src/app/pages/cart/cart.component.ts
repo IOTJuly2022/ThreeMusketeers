@@ -8,22 +8,25 @@ import { OrderService } from '../../_services/order.service'
 })
 export class CartComponent implements OnInit {
 
-  constructor(private order : OrderService) {  }
-
-  availItems : boolean = false;
+  constructor(private orderService : OrderService) {  }
+  quantityCounter : number = 0;
+  total : number = 0;
+  availItems : boolean = false  ;
   orderList : any;
   ngOnInit(): void {
-    this.order.getAllOrdersForCurrentUsers().subscribe((orders : any) => {
+    this.orderService.getAllOrdersForCurrentUsers().subscribe((orders : any) => {
       if(!orders) this.availItems = false;
-
       this.orderList = orders[0];
       this.availItems = true;
+      this.quantityCounter = this.orderList.orderDetails.quantity;
     });
   }
 
 
-  showItems(){
+  updateQuantity(){
 
   }
+  calculatedTotal(){
 
+  }
 }

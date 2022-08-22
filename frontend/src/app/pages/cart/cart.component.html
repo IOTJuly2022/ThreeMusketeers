@@ -4,13 +4,45 @@
     <h1>No items in cart</h1 >
   </div>
   <div *ngIf="availItems">
-    <h2 class="text-center">Your Items</h2>
-    <table>
-      <tr *ngFor="let orderDetail of orderList.orderDetails">
-        <td>{{orderDetail.product.name}}</td>
-        <td>{{orderDetail.quantity}}</td>
-        <td>{{orderDetail.product.price}}</td>
+    <br><br>
+    <h2 class="text-center">Your Cart</h2>
+    <table class="table align-middle mb-0 bg-dark">
+      <thead class="bg-dark">
+      <tr>
+        <th>Name</th>
+        <th>Rating</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Actions</th>
       </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let orderDetail of orderList.orderDetails">
+        <td>
+          <div class="d-flex align-items-center">
+            <div class="ms-3">
+              <p class="fw-bold mb-1">{{orderDetail.product.name}}</p>
+            </div>
+          </div>
+        </td>
+        <td>
+          <p class="fw-normal mb-1">{{orderDetail.product.rating}}</p>
+        </td>
+        <td>
+          <input type="number" class="fw-normal mb-1 bg-dark" [(ngModel)]="quantityCounter">
+        </td>
+        <td>
+          <p class="fw-normal mb-1">${{orderDetail.product.price}}</p>
+        </td>
+      </tr>
+      <tr>
+        <td></td><td></td><td></td>
+        <td><p class="fw-normal mb-1">Total</p></td>
+        <td><p class="fw-normal mb-1">{{total}}</p></td>
+      </tr>
+      </tbody>
+
+
     </table>
   </div>
 </section>
