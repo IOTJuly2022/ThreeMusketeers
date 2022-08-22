@@ -14,6 +14,7 @@ phases:
     commands:
       - echo Build started on `date`
       - cd backend
+      - chmod +x gradlew
       - ./gradlew bootJar
 
   post_build:
