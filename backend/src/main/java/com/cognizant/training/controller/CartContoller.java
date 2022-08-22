@@ -44,10 +44,12 @@ public class CartContoller {
     }
 
     @GetMapping("users/{user_id}/cart")
-    public ResponseEntity<Order> getAllCarts(@PathVariable Long user_id){
+    public ResponseEntity<Optional<Order>> getAllCarts(@PathVariable Long user_id){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        return ResponseEntity.ok(orderRepo.findAllByOwner_Id(user.getId()).orElse(new Order()));
-
+        Optional<Order> order = orderRepo.findAllByOwner_Id((user.getId()));
+        if(order.isPresent())
+            return ResponseEntity.ok(order);
+        else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
 }
