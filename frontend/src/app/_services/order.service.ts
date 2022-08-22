@@ -19,6 +19,15 @@ export class OrderService {
     }
     return this.httpClient.get(`${environment.AUTHENTICATION_API_URL}/users/${user.id}/cart`);
   }
+/*
+  setQuantityForSingleProduct(newQuantity : number){
+    let user = this.authService.user;
+    if(!user) {
+      return of();
+    }
+    return this.httpClient.set(`${environment.AUTHENTICATION_API_URL}/users/${user.id}/cart`);
+  }
+  */
 
 
 }

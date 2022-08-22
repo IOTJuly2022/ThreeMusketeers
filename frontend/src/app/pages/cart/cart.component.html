@@ -29,7 +29,7 @@
           <p class="fw-normal mb-1">{{orderDetail.product.rating}}</p>
         </td>
         <td>
-          <input type="number" class="fw-normal mb-1 bg-dark" [(ngModel)]="quantityCounter">
+          <input type="number" class="fw-normal mb-1 bg-dark" [(ngModel)]="orderDetail.quantity">
         </td>
         <td>
           <p class="fw-normal mb-1">${{orderDetail.product.price}}</p>
@@ -38,7 +38,7 @@
       <tr>
         <td></td><td></td><td></td>
         <td><p class="fw-normal mb-1">Total</p></td>
-        <td><p class="fw-normal mb-1">{{total}}</p></td>
+        <td><p class="fw-normal mb-1">${{total}}</p></td>
       </tr>
       </tbody>
 

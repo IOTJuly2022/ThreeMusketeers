@@ -18,7 +18,8 @@ export class CartComponent implements OnInit {
       if(!orders) this.availItems = false;
       this.orderList = orders[0];
       this.availItems = true;
-      this.quantityCounter = this.orderList.orderDetails.quantity;
+      //this.total = this.orderList.orderDetails[0].product.price;
+      this.calculatedTotal(this.orderList);
     });
   }
 
@@ -26,7 +27,9 @@ export class CartComponent implements OnInit {
   updateQuantity(){
 
   }
-  calculatedTotal(){
-
+  calculatedTotal(orderList : any){
+    for(let i = 0; i < orderList.orderDetails.length; i++){
+      this.total += orderList.orderDetails[i].product.price;
+    }
   }
 }
