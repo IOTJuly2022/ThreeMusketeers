@@ -33,7 +33,7 @@ public class Order {
 	@Getter
 	@Setter
 	@NotNull
-	@ManyToOne()
+	@OneToOne
 	@JoinColumn(name="user_id")
 	public User owner;
 	

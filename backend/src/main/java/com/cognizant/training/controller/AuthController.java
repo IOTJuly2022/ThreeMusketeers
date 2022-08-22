@@ -43,7 +43,7 @@ public class AuthController {
         response.setFirstName(user.getFirstName());
         response.setLastName(user.getLastName());
         response.setToken(jwtUtils.generateJwtToken(user));
-
+        response.setId(user.getId());
         return response;
     }
 
