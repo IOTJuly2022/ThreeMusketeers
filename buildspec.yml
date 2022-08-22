@@ -8,12 +8,12 @@ phases:
     commands:
       - echo In the pre_build phase...
       - cd backend
-      - ./gradlew test
+      - gradle test
 
   build:
     commands:
       - echo Build started on `date`
-      - ./gradlew bootJar
+      - gradle bootJar
 
   post_build:
     commands:
