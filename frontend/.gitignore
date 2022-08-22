@@ -15,6 +15,7 @@ chrome-profiler-events*.json
 
 # IDEs and editors
 /.idea
+../.idea
 .project
 .classpath
 .c9/
@@ -43,3 +44,6 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# Don't include cahce
+.angular/cache
