@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Product, GPU, RAM, CPU, Mobo } from 'src/app/models/product.model';
 import { ProductService } from 'src/app/_services/catalog/products.service';
+import { OrderService } from '../../_services/order.service'
+import {AlertService} from "../../_services/alert.service";
 
 @Component({
   selector: 'app-catalog',
@@ -17,8 +19,9 @@ export class CatalogComponent implements OnInit {
   cpus: CPU[] = [];
   mobos: Mobo[] = [];
 
-    constructor(private ps: ProductService){
-
+    constructor(private ps: ProductService,
+    private orderService : OrderService,
+    private alertService : AlertService){
     }
 
     scrollToElement($element:Element) : void {
@@ -29,11 +32,11 @@ export class CatalogComponent implements OnInit {
         this.ps.findAll().subscribe(data => {
             this.products = data;
         });
-        
+
         this.ps.findGPU().subscribe(data => {
           this.gpus = data;
         });
-        
+
         this.ps.findCPU().subscribe(data => {
           this.cpus = data;
         });
@@ -45,6 +48,16 @@ export class CatalogComponent implements OnInit {
         this.ps.findMOBO().subscribe(data => {
           this.mobos = data;
         });
+    }
+
+    addToCart(product : any){
+      this.orderService.addProductToCart(product).subscribe((order : any) => {
+        //Want to add the product to the cart and then check and alert user that it added
+        this.alertService.success('Item Added to Cart');
+      }),((error: any)=>{
+        this.alertService.error(error.error);
+      });
+
     }
 
 }

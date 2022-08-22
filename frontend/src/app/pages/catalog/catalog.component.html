@@ -61,6 +61,7 @@
                     <th>Name</th>
                     <th>Price (USD)</th>
                     <th>Rating</th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -69,6 +70,7 @@
                         <td>{{p.name}}</td>
                         <td>{{p.price}}</td>
                         <td>{{p.rating}}</td>
+                        <td><button class="btn-primary btn-rounded bg-dark" (click)="addToCart(p)" >Add</button></td>
                     </tr>
                 </tbody>
               </table>
@@ -90,6 +92,7 @@
                     <th>Memory (VRAM)</th>
                     <th>Base Clock Speed</th>
                     <th>Length (Inches)</th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -103,6 +106,7 @@
                         <td>{{g.memory}}</td>
                         <td>{{g.clockspeed}}</td>
                         <td>{{g.length}}</td>
+                        <td><button class="btn-primary btn-rounded bg-dark" (click)="addToCart(g)" >Add</button></td>
                     </tr>
                 </tbody>
               </table>
@@ -122,6 +126,7 @@
                     <th>Total Memory (GB)</th>
                     <th>Size Overhead (mm)</th>
                     <th>Color</th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -133,7 +138,9 @@
                         <td>{{r.speed}}</td>
                         <td>{{r.capacity}}</td>
                         <td>{{r.overhead}}</td>
-                        <td>{{r.color}}</td>               
+                        <td>{{r.color}}</td>
+                        <td><button class="btn-primary btn-rounded bg-dark" (click)="addToCart(r)" >Add</button></td>
+                        <td><button>Add</button></td>
                     </tr>
                 </tbody>
               </table>
@@ -154,6 +161,7 @@
                     <th>Base Clock (gHz)</th>
                     <th>TDP</th>
                     <th>iGPU Support</th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -167,6 +175,7 @@
                         <td>{{c.coreclock}}</td>
                         <td>{{c.tdp}}</td>
                         <td>{{c.igpu}}</td>
+                        <td><button class="btn-primary btn-rounded bg-dark" (click)="addToCart(c)" >Add</button></td>
                     </tr>
                 </tbody>
               </table>
@@ -187,6 +196,7 @@
                     <th>Max RAM Capacity</th>
                     <th>RAM Channels</th>
                     <th>Color</th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -200,6 +210,7 @@
                         <td>{{m.maxram}}</td>
                         <td>{{m.channels}}</td>
                         <td>{{m.color}}</td>
+                        <td><button class="btn-primary btn-rounded bg-dark" (click)="addToCart(m)" >Add</button></td>
                     </tr>
                 </tbody>
               </table>

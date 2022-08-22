@@ -19,7 +19,8 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {
     this.orderService.getAllOrdersForCurrentUsers().subscribe((orders : any) => {
       if(!orders) this.availItems = false;
-      this.orderList = orders[0];
+      //this.orderList = orders[0];
+      this.orderList = orders;
       this.availItems = true;
       this.calculatedTotal(this.orderList);
     });
@@ -32,7 +33,11 @@ export class CartComponent implements OnInit {
 
   //Update Quantity of the Product from UI
   updateQuantity(orderDetail : any){
-
+    this.orderService.updateQuantityForSingleProduct(orderDetail).subscribe((order : any) => {
+      this.alertService.success('Product Updated');
+    },(error : any) => {
+    this.alertService.error(error.error);
+    });
   }
 
   //Total price calculated for Quantity*Price
