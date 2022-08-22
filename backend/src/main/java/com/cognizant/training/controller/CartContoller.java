@@ -46,23 +46,8 @@ public class CartContoller {
     @GetMapping("users/{user_id}/cart")
     public ResponseEntity<Order> getAllCarts(@PathVariable Long user_id){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        //Fake order for testing
-        /*
-        Order fakeOrder = new Order("user", new OrderStatus("in-cart"));
-        Set<OrderDetail> fakeDetails = new HashSet<>();
-        Product fakeProduct = new Product("4020 RTX", 5,5);
-
-        OrderDetail fakeDetail = new OrderDetail(2,fakeOrder, fakeProduct);
-        OrderDetail fakeDetail2 = new OrderDetail(7,fakeOrder, fakeProduct);
-
-        fakeDetails.add(fakeDetail);
-        fakeDetails.add(fakeDetail2);
-        fakeOrder.setOrderDetails(fakeDetails);
-         */
-        //return new ResponseEntity.ok(orderRepo.findAllByOwner_Id(user.getId()).orElse(List.of()));
         return ResponseEntity.ok(orderRepo.findAllByOwner_Id(user.getId()).orElse(new Order()));
 
     }
-
 
 }
