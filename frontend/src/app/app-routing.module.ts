@@ -6,6 +6,7 @@ import {LoginComponent} from "./pages/login/login.component";
 import {RegisterComponent} from "./pages/register/register.component";
 import {CartComponent} from "./pages/cart/cart.component";
 import {AuthGuard } from './_helpers/auth.guard'
+
 const routes: Routes = [
   {path: '', pathMatch: 'full', component: HomeComponent},
   {path: 'catalog', component: CatalogComponent},
