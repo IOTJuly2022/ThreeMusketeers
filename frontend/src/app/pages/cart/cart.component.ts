@@ -23,6 +23,8 @@ export class CartComponent implements OnInit {
       this.orderList = orders;
       this.availItems = true;
       this.calculatedTotal(this.orderList);
+    },(error : any) => {
+      this.alertService.error(error.error);
     });
   }
 
@@ -34,7 +36,8 @@ export class CartComponent implements OnInit {
   //Update Quantity of the Product from UI
   updateQuantity(orderDetail : any){
     this.orderService.updateQuantityForSingleProduct(orderDetail).subscribe((order : any) => {
-      this.alertService.success('Product Updated');
+      this.alertService.success('Product Updated', {fade: true});
+      this.calculatedTotal(this.orderList);
     },(error : any) => {
     this.alertService.error(error.error);
     });
@@ -42,7 +45,8 @@ export class CartComponent implements OnInit {
 
   //Total price calculated for Quantity*Price
   calculatedTotal(orderList : any){
-    for(let i = 0; i < orderList.orderDetails.length; i++){
+    this.total = 0;
+    for(let i = 0; i < orderList.orderDetails?.length; i++){
       this.total += orderList.orderDetails[i].product.price * orderList.orderDetails[i].quantity;
     }
   }

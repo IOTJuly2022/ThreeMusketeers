@@ -1,10 +1,12 @@
 package com.cognizant.training.controller;
 
 import com.cognizant.training.exception.ProductNotFoundException;
+import com.cognizant.training.model.GPU;
 import com.cognizant.training.model.Product;
 import com.cognizant.training.repository.ProductRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

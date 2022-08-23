@@ -15,19 +15,19 @@ export class AlertService {
     return this._alert$.asObservable().pipe(filter(a => a && a.id == id));
   }
 
-  success(message: string, id: string = 'default') {
-    this.alert(new Alert({message, id, type: AlertType.Success}));
+  success(message: string, data: any = null, id: string = 'default') {
+    this.alert(new Alert({message, id, type: AlertType.Success, ...data}));
   }
 
-  error(message: string, id: string = 'default') {
+  error(message: string, data: any = null, id: string = 'default') {
     this.alert(new Alert({message, id, type: AlertType.Error}));
   }
 
-  warning(message: string, id: string = 'default') {
+  warning(message: string, data: any = null, id: string = 'default') {
     this.alert(new Alert({message, id, type: AlertType.Warning}));
   }
 
-  info(message: string, id: string = 'default') {
+  info(message: string, data: any = null, id: string = 'default') {
     this.alert(new Alert({message, id, type: AlertType.Info}));
   }
 
