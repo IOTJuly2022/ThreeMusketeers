@@ -33,6 +33,7 @@ import { CatalogComponent } from './pages/catalog/catalog.component';
 import { AlertComponent } from './_components/alert/alert.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { ProductService } from './_services/catalog/products.service';
+import { ScrollTopComponent } from './_components/scroll-top/scroll-top.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { ProductService } from './_services/catalog/products.service';
     NavbarComponent,
     AlertComponent,
     CartComponent,
-    CatalogComponent
+    CatalogComponent,
+    ScrollTopComponent
   ],
   imports: [
     BrowserModule,
