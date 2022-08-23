@@ -20,7 +20,7 @@
           <a class="nav-link" routerLink="/">Home</a>
         </li>
         <!-- Link -->
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="loggedIn">
           <a class="nav-link" routerLink="/catalog">Catalog</a>
         </li>
 
