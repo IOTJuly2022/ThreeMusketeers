@@ -15,9 +15,7 @@ public class Motherboard extends Product{
 	@Getter
 	@Setter
 	@NotNull
-	@ManyToOne
-	@JoinColumn(name="Socket")
-	private Socket socket;
+	private String socket;
 	
 	@Getter
 	@Setter
@@ -43,7 +41,7 @@ public class Motherboard extends Product{
 			String name,
 			float price,
 			float rating,
- 			Socket socket,
+			String socket,
 			String formFactor,
 			int maxMem,
 			int memSlots,
@@ -54,7 +52,7 @@ public class Motherboard extends Product{
 		this.formFactor = formFactor;
 		this.maxMem = maxMem;
 		this.memSlots = memSlots;
-		this.color = color;
+		this.color = (Math.random() > 0.5) ? "White" : "Black";
 	}
 
 	public Motherboard() { }

@@ -1,5 +1,18 @@
 package com.cognizant.training.controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 import com.cognizant.training.exception.ProductNotFoundException;
 import com.cognizant.training.model.GPU;
 import com.cognizant.training.model.Product;
@@ -54,6 +67,13 @@ public class ProductController {
 	@PostMapping("/v1/products")
 	Product newProduct(@RequestBody Product newProd) {
 		return repo.save(newProd);
+	}
+	
+	@PostMapping("/v1/products/list")
+	List<? extends Product> newProductFromList(@RequestBody Product[] newProd) {
+		for(Product p : newProd)
+			repo.save(p);
+		return Arrays.asList(newProd);
 	}
 
 	// GET:: Fetch single Product item by its ID
