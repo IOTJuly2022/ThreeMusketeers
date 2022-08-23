@@ -8,7 +8,7 @@ import {CartComponent} from "./pages/cart/cart.component";
 import {AuthGuard } from './_helpers/auth.guard'
 const routes: Routes = [
   {path: '', pathMatch: 'full', component: HomeComponent},
-  {path: 'catalog', component: CatalogComponent},
+  {path: 'catalog', component: CatalogComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'cart', component: CartComponent, canActivate: [AuthGuard]},
