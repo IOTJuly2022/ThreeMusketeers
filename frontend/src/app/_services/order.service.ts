@@ -26,7 +26,7 @@ export class OrderService {
       return of();
     }
 
-    return this.httpClient.put(`${environment.ORDERS_API_URL}/users/${user.id}/cart`,
+    return this.httpClient.post(`${environment.ORDERS_API_URL}/users/${user.id}/cart`,
     {
     product: orderDetail.product.id,
     count: orderDetail.quantity
@@ -34,11 +34,12 @@ export class OrderService {
   }
 
   addProductToCart(product : any){
+    console.log(product);
     let user = this.authService.user;
-    if(!user) return throwError({error:'Product Not Added'});
+    if(!user) return throwError(()=> {error:'Product Not Added'});
     return this.httpClient.put(`${environment.ORDERS_API_URL}/users/${user.id}/cart`,
     {
-    product : product,
+    product : product.id,
     count : 1
     });
 

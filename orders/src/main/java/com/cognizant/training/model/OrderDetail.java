@@ -1,5 +1,6 @@
 package com.cognizant.training.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -39,6 +40,7 @@ public class OrderDetail {
 	@ManyToOne
 	@JoinColumn(name="OrderID")
 	@NotNull
+	@JsonIgnore
 	public Order order;
 	
 	/**
@@ -71,6 +73,6 @@ public class OrderDetail {
 	 * @param amount amount to change the quantity of the product
 	 */
 	public void changeQuantity(int amount){
-		this.quantity = Math.min(0,this.quantity+amount);
+		this.quantity = Math.max(1,this.quantity+amount);
 	}
 }

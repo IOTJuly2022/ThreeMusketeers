@@ -6,11 +6,11 @@ import {filter, Observable, Subject} from "rxjs";
 @Injectable()
 export class ProductService {
 
-  private productApi: string = 'http://localhost:5000/v1/catalog';
-  private gpuApi: string = 'http://localhost:5000/v1/catalog/gpu';
-  private ramApi: string = 'http://localhost:5000/v1/catalog/memory';
-  private moboApi: string = 'http://localhost:5000/v1/catalog/motherboard';
-  private cpuApi: string = 'http://localhost:5000/v1/catalog/processor';
+  private productApi: string = 'http://localhost:5001/v1/catalog';
+  private gpuApi: string = 'http://localhost:5001/v1/catalog/gpu';
+  private ramApi: string = 'http://localhost:5001/v1/catalog/memory';
+  private moboApi: string = 'http://localhost:5001/v1/catalog/motherboard';
+  private cpuApi: string = 'http://localhost:5001/v1/catalog/processor';
 
   // Ref annotations in ProductController
   constructor(private http: HttpClient) {
