@@ -62,7 +62,7 @@ export class CatalogComponent implements OnInit {
               this.alertService.error(error.error);
             });
       }
-      else this.alertService.error('Not Logged In');
+      else this.alertService.warning('Not Logged In');
 
     }
 
