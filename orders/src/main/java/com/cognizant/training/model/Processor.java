@@ -13,10 +13,9 @@ import javax.validation.constraints.NotNull;
 public class Processor extends Product {
 	@Getter
 	@Setter
-	@NotNull
-	@ManyToOne
-	@JoinColumn(name="Socket")
-	private Socket socket;
+	//@ManyToOne
+	//@JoinColumn(name="Socket")
+	private String socket;
 	
 	@Getter
 	@Setter
@@ -41,7 +40,7 @@ public class Processor extends Product {
 			String name,
 			float price,
 			float rating,
-			Socket socket,
+			String socket,
 			float coreCount,
 			float coreClock,
 			float tdp,

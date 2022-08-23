@@ -9,11 +9,11 @@ import javax.persistence.Entity;
 public class Memory extends Product{
 	@Getter
 	@Setter
-	private float speed;
+	private String speed;
 	
 	@Getter
 	@Setter
-	private int packageSize;
+	private String packageSize;
 	
 	@Getter
 	@Setter
@@ -27,8 +27,8 @@ public class Memory extends Product{
 			String name,
 			float price,
 			float rating,
-			float speed,
-			int packageSize,
+			String speed,
+			String packageSize,
 			int size,
 			String color
 	) {
